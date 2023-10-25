@@ -53,7 +53,7 @@ def proxy_report(api_version, uuid):
                     return resp.text, resp.status_code
             
             resp_json = resp.json()
-            resp_json['total_reported'] = len(body['url_misclassifications'])
+            resp_json['total_reported'] = len(url_misclassifications)
 
             return resp_json, 200
         except Exception as ex:
