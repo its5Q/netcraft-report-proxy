@@ -2,10 +2,10 @@ services:
   screenshoter:
     image: "mingalevme/screenshoter"
     ports:
-      - 3000:8080
+      - 127.0.0.1:3000:8080
   api:
     depends_on: ["screenshoter"]
     build: .
     ports:
-      - 4040:5000
+      - 127.0.0.1:4040:5000
   
