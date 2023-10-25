@@ -40,6 +40,9 @@ def proxy_report(api_version, uuid):
             url_misclassifications = [misclass for misclass in url_misclassifications if misclass is not None]
             body['url_misclassifications'] = url_misclassifications
 
+            if not url_misclassifications:
+                return {"message": "Couldn't screenshot pages, nothing was reported", "total_reported": 0}, 200
+
             resp = requests.post(f'https://report.netcraft.com/api/{api_version}/submission/{uuid}/report_issue', json=body)
 
             if resp.status_code != 200:
