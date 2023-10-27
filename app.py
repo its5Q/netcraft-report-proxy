@@ -16,13 +16,15 @@ def populate_screenshot(misclassification):
         })
 
         if not resp.status_code == 200:
+            print(f'Error capturing screenshot: {resp.text}')
             return None
         
         misclassification['screenshot'] = {
             "base64": base64.b64encode(resp.content).decode(),
             "ext": "jpg"
         }
-    except Exception:
+    except Exception as ex:
+        print(f'Error capturing screenshot: {ex}')
         return None
 
     return misclassification
