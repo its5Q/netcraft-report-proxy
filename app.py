@@ -3,6 +3,7 @@ from flask import request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 import base64
+import logging
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ def populate_screenshot(misclassification):
         })
 
         if not resp.status_code == 200:
-            print(f'Error capturing screenshot: {resp.text}')
+            logging.error(f'Error capturing screenshot: {resp.text}')
             return None
         
         misclassification['screenshot'] = {
@@ -24,7 +25,7 @@ def populate_screenshot(misclassification):
             "ext": "jpg"
         }
     except Exception as ex:
-        print(f'Error capturing screenshot: {ex}')
+        logging.error(f'Error capturing screenshot: {ex}')
         return None
 
     return misclassification
