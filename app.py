@@ -17,7 +17,7 @@ def populate_screenshot(misclassification):
         })
 
         if not resp.status_code == 200:
-            logging.error(f'Error capturing screenshot: {resp.text}')
+            logging.error(f'Error capturing screenshot on {misclassification["url"]}: {resp.text}')
             return None
         
         misclassification['screenshot'] = {
@@ -25,7 +25,7 @@ def populate_screenshot(misclassification):
             "ext": "jpg"
         }
     except Exception as ex:
-        logging.error(f'Error capturing screenshot: {ex}')
+        logging.error(f'Error capturing screenshot on {misclassification["url"]}: {ex}')
         return None
 
     return misclassification
